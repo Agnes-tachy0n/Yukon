@@ -19,10 +19,12 @@ Yukon is currently in an early stage of development. It may contain bugs, incomp
 
 ## Requirements
 
-- [BetterDiscord](https://betterdiscord.app/).
+- [BetterDiscord](https://betterdiscord.app/), or a source build of [Vencord](https://vencord.dev/) / [Equicord](https://equicord.org/).
 - **Display Spotify as your status** must be enabled in Discord.
 
 ## Installation
+
+### BetterDiscord
 
 1. Download the files from this repository.
 2. Place `YukonDissolve.plugin.js` in your BetterDiscord plugins folder.
@@ -41,6 +43,15 @@ Yukon is currently in an early stage of development. It may contain bugs, incomp
 > **DO NOT enable the plugin before the theme.**
 >
 > Both must remain enabled for everything to work correctly.
+
+### Vencord / Equicord
+
+1. Clone this repository into `src/userplugins/yukonDissolve/` inside your Vencord or Equicord source checkout.
+2. Run `pnpm build` in the Vencord or Equicord checkout, then fully restart Discord. Your client must already be using that source build.
+3. Copy `yukon/YukonDissolve.theme.css` into your client's themes folder and enable the theme **before** enabling the **YukonDissolve** plugin.
+4. Enable **Display Spotify as your status**, then play a song on Spotify.
+
+Both clients use the same `YukonDissolve.plugin.js`. BetterDiscord loads it directly through `BdApi`; Vencord and Equicord load `index.ts`, which supplies their store APIs to the shared plugin. Update the wrapper and shared file together when updating a source installation.
 
 ## Black Screen? How to Fix It
 

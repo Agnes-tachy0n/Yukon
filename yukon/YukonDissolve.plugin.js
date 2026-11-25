@@ -2,19 +2,47 @@
  * @name Yukon
  * @author Zanf
  * @version 0.1.0
+ * @license MIT
  * @description Adds an animated Spotify album artwork wallpaper. Requires the Yukon theme.
+ */
+
+/*
+ * SPDX-License-Identifier: MIT
+ * MIT License
+ *
+ * Copyright (c) 2026 Ángel
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 /* Requiere: "Mostrar Spotify como tu estado". */
 module.exports = class YukonDissolve {
-  start() {
+  start(stores) {
     "use strict";
     const cleanups = (this.cleanups = []);
 
-    const UserStore = BdApi.Webpack.getStore("UserStore");
-    const PresenceStore = BdApi.Webpack.getStore("PresenceStore");
+    const UserStore = stores?.UserStore ?? globalThis.BdApi?.Webpack.getStore("UserStore");
+    const PresenceStore = stores?.PresenceStore ?? globalThis.BdApi?.Webpack.getStore("PresenceStore");
     if (!UserStore || !PresenceStore) {
-      BdApi.UI.showToast("YukonDissolve: no encontré PresenceStore/UserStore", { type: "error" });
+      const message = "YukonDissolve: no encontré PresenceStore/UserStore";
+      if (globalThis.BdApi?.UI) globalThis.BdApi.UI.showToast(message, { type: "error" });
+      else console.error(message);
       return;
     }
 

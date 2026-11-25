@@ -17,10 +17,12 @@ Yukon todavía se encuentra en una etapa temprana de desarrollo. Puede contener 
 
 ## Requisitos
 
-- [BetterDiscord](https://betterdiscord.app/).
+- [BetterDiscord](https://betterdiscord.app/), o una compilación desde el código fuente de [Vencord](https://vencord.dev/) / [Equicord](https://equicord.org/).
 - Tener activada la opción **Mostrar Spotify como tu estado** en Discord.
 
 ## Instalación
+
+### BetterDiscord
 
 1. Descarga los archivos del repositorio.
 2. Coloca `YukonDissolve.plugin.js` en la carpeta de plugins de BetterDiscord.
@@ -38,6 +40,15 @@ Yukon todavía se encuentra en una etapa temprana de desarrollo. Puede contener 
 > **NO actives el plugin antes que el tema**
 >
 > Ambos deben permanecer activados para que todo funcione correctamente.
+
+### Vencord / Equicord
+
+1. Clona este repositorio en `src/userplugins/yukonDissolve/` dentro del código fuente de Vencord o Equicord.
+2. Ejecuta `pnpm build` en la carpeta de Vencord o Equicord y reinicia Discord por completo. El cliente ya debe estar utilizando esa compilación desde el código fuente.
+3. Copia `yukon/YukonDissolve.theme.css` a la carpeta de temas del cliente y activa el tema **antes** de activar el plugin **YukonDissolve**.
+4. Activa **Mostrar Spotify como tu estado** y reproduce una canción desde Spotify.
+
+Ambos clientes utilizan el mismo archivo `YukonDissolve.plugin.js`. BetterDiscord lo carga directamente mediante `BdApi`; Vencord y Equicord cargan `index.ts`, que proporciona sus API de stores al plugin compartido. Al actualizar una instalación desde el código fuente, actualiza juntos el adaptador y el archivo compartido.
 
 ## ¿Pantalla negra? Cómo solucionarlo
 
